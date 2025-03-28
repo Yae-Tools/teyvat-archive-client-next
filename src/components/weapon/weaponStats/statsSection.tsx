@@ -1,20 +1,40 @@
+import { useEffect, useState } from "react";
 import { formatWeaponStatValue } from "~/utils/formatters/weaponStatValue.formatter";
+import squashWeaponLevels from "~/utils/squashWeaponLevels";
 
 type Props = {
   stars: number;
   stats: {
     [key: string]: IEnkaStat[];
   };
-  squashedView: boolean;
-  setSquashedView: (value: boolean) => void;
+
 };
 
 export default function StatsSection({
   stars,
   stats,
-  squashedView,
-  setSquashedView,
 }: Readonly<Props>) {
+  const [squashedView, setSquashedView] = useState(false);
+  const [mutatedStats, setMutatedStats] = useState(stats);
+
+  useEffect(() => {
+    if (squashedView) {
+      const squashedLevels = squashWeaponLevels(
+        stats,
+        stats[1][1].fightProp as keyof IEnkaStat
+      );
+
+      //only display values from keys of squashedLevels
+      const squahsedStats = Object.fromEntries(
+        Object.entries(stats).filter(([key]) => squashedLevels.includes(key))
+      );
+
+      setMutatedStats(squahsedStats);
+    } else {
+      setMutatedStats(stats);
+    }
+  }, [squashedView]);
+
   return (
     <div className="py-6 space-y-2 text-white w-full">
       {stars > 2 && (
@@ -42,19 +62,19 @@ export default function StatsSection({
               Lv.
             </th>
             <th className="p-3 text-center text-sm font-semibold border-b border-r border-gray-700">
-              {stats[1][0].fightPropName}
+              {mutatedStats[1][0].fightPropName}
             </th>
             {stars > 2 && (
               <th className="p-3 text-center text-sm font-semibold border-b border-r border-gray-700">
-                {stats[1][1].fightPropName}
+                {mutatedStats[1][1].fightPropName}
               </th>
             )}
           </tr>
         </thead>
         <tbody>
-          {Object.keys(stats).map((key) => {
+          {Object.keys(mutatedStats).map((key) => {
             const level = Number(key);
-            const stat = stats[level];
+            const stat = mutatedStats[level];
             return (
               <tr
                 key={key}
