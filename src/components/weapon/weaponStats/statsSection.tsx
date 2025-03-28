@@ -29,7 +29,7 @@ export default function StatsSection({
         Object.entries(stats).filter(([key]) => squashedLevels.includes(key))
       );
 
-      setMutatedStats(squahsedStats);
+      setMutatedStats(squashedStats);
     } else {
       setMutatedStats(stats);
     }
