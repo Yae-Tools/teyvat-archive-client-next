@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useAtom } from "jotai";
 import {
   addHours,
   differenceInSeconds,
@@ -10,10 +11,12 @@ import {
 import { toZonedTime } from "date-fns-tz";
 import TimerItem from "./timer/timerItem";
 import ButtonGroup from "../common/basic/buttonGroup";
+import { defaultServerAtom } from "~/atoms/feature.atoms";
 
 export default function TimeUntilReset() {
+  const [defaultServer] = useAtom(defaultServerAtom);
   const [time, setTime] = useState(new Date());
-  const [selectedServer, setSelectedServer] = useState("ASIA");
+  const [selectedServer, setSelectedServer] = useState(defaultServer);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -73,6 +76,10 @@ export default function TimeUntilReset() {
   const getServerOffset = (server: string) => {
     return SERVER_MAP.get(server) as number;
   };
+
+  useEffect(() => {
+    setSelectedServer(defaultServer);
+  }, [defaultServer]);
 
   return (
     <div className="w-full flex flex-col items- xl:items-start justify-center xl:mb-4 mt-3 space-y-4">

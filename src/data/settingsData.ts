@@ -1,6 +1,7 @@
 import { GlobeIcon, MonitorCog, WrenchIcon } from "lucide-react";
 import DisplaySettings from "~/components/modals/settings/displaySettings";
 import GeneralSettings from "~/components/modals/settings/generalSettings";
+import LocaleSettings from "~/components/modals/settings/localeSettings";
 
 const SETTINGS_CATEGORIES = [
   {
@@ -19,6 +20,7 @@ const SETTINGS_CATEGORIES = [
     id: "language",
     title: "Language & Region",
     icon: GlobeIcon,
+    content: LocaleSettings,
   },
 ];
 

@@ -12,7 +12,9 @@ export const useCarouselAutoPlayAtom = atomWithStorage(
   "useCarouselAutoPlay",
   false
 );
-export const useCarouselIntervalAtom = atomWithStorage(
+export const carouselIntervalAtom = atomWithStorage(
   "useCarouselInterval",
   5000
 );
+
+export const defaultServerAtom = atomWithStorage("defaultServer", "ASIA");
