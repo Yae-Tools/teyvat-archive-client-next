@@ -11,7 +11,6 @@ import LogoHolder from "~/components/common/logoHolder";
 import SettingsModal from "~/components/modals/settings/settingsModal";
 import DesktopNavRoutes from "./desktopNavRoutes";
 import HeaderSidebar from "./headerSideBar";
-import Image from "next/image";
 
 export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
