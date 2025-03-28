@@ -25,7 +25,7 @@ export default function StatsSection({
       );
 
       //only display values from keys of squashedLevels
-      const squahsedStats = Object.fromEntries(
+      const squashedStats = Object.fromEntries(
         Object.entries(stats).filter(([key]) => squashedLevels.includes(key))
       );
 
