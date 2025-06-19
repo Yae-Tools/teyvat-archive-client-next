@@ -41,7 +41,7 @@ export default function HomeClient({ gameData }: Readonly<Props>) {
       <div className={rightColumnClasses}>
         <VersionAnnouncement version={gameData.version} />
         <TimeUntilReset />
-        {isXl ? null : <DailyDomains />}
+        {!isXl && <DailyDomains />}
         <RedeemCodes />
       </div>
       {isXl && <DailyDomains />}

@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { ClipboardList } from "lucide-react";
 import Image from "next/image";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import yaeWhisperIcon from "~/assets/icons/system/yae_wispher.png";
 import { getRedeemCodes } from "~/services/system/system.service";
@@ -118,7 +118,6 @@ const RedeemCodeLayout = ({ children }: Readonly<RedeemCodeLayoutProps>) => {
         Redeem Codes
       </h2>
       {children}
-      <ToastContainer />
     </div>
   );
 };
