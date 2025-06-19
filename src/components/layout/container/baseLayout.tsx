@@ -9,6 +9,7 @@ import { IGameVersion } from "~/types/system.types";
 import AnnouncementBanner from "../banner/announcementBanner";
 import Footer from "../footer/footer";
 import Header from "../header/header";
+import { ToastContainer } from "react-toastify";
 
 type Props = {
   children: React.ReactNode;
@@ -55,6 +56,8 @@ export default async function BaseLayout({ children }: Readonly<Props>) {
           <Footer />
         </div>
       </div>
+
+      <ToastContainer />
     </Suspense>
   );
 }
